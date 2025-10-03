@@ -9,6 +9,40 @@ import DeleteController from "./useCases/DeleteService/DeleteController";
 
 const router = Router();
 
+/**
+ * @swagger
+ * /services:
+ *   post:
+ *     summary: Cria um novo serviço
+ *     tags: [Serviços]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               durationMin:
+ *                 type: number
+ *             required:
+ *               - name
+ *               - price
+ *     responses:
+ *       201:
+ *         description: Serviço criado com sucesso
+ *       400:
+ *         description: Erro na requisição
+ *   get:
+ *     summary: Lista todos os serviços
+ *     tags: [Serviços]
+ *     responses:
+ *       200:
+ *         description: Lista de serviços
+ */
 // Rotas de criação de serviço
 router.post("/services", ServiceController.create);
 // Rotas de listagem de serviços

@@ -7,12 +7,15 @@ import UserRoutes from "../src/modules/Users/UserRoutes"
 import ClientRoutes from "../src/modules/Consumer/ClientRoutes"
 // Rotas de serviços
 import ServiceRoutes from "../src/modules/Service/ServiceRoutes"
-
+import { setupSwagger } from "./config/swagger";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use( UserRoutes); // Adiciona as rotas de usuário
+
+setupSwagger(app); // Adiciona a documentação Swagger em /docs
+
+app.use(UserRoutes); // Adiciona as rotas de usuário
 app.use(ClientRoutes); // Adiciona as rotas de clientes
 app.use(ServiceRoutes); // Adiciona as rotas de serviços
 

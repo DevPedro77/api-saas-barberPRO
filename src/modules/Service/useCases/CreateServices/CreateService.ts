@@ -1,5 +1,5 @@
 import e from "express";
-import prisma from "../../../config/database";
+import prisma from "../../../../config/database";
 
 interface CreateServiceData {
   name: string;

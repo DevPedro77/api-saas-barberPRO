@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 // Rotas de Usuário
 import UserRoutes from "../src/modules/Users/UserRoutes"
 // Rotas de Clientes
-import ClientRoutes from "../src/modules/Clients/ClientRoutes"
+import ClientRoutes from "../src/modules/Consumer/ClientRoutes"
 // Rotas de serviços
 import ServiceRoutes from "../src/modules/Service/ServiceRoutes"
 

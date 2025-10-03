@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import ClientService from "../Create/ClientService";
+import ClientService from "../createConsumer/ClientService";
 
 
 class ClientController {

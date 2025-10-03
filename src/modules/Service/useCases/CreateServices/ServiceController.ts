@@ -1,5 +1,5 @@
 import e, { Response, Request } from "express";
-import ServiceService from "../Create/CreateService";
+import ServiceService from "./CreateService";
 
 class ServiceController {
   async create(req: Request, res: Response){

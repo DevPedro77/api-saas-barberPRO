@@ -1,6 +1,6 @@
 import {Router} from "express"
-import ClientController from "./Create/ClientController"
-import ListClientController from "./List/ListClientController"
+import ClientController from "../Consumer/useCases/createConsumer/ClientController"
+import ListClientController from "../Consumer/useCases/listConsumer/ListClientController"
 
 
 const router = Router();

@@ -9,6 +9,9 @@ import AuthRoutes from "../src/modules/Auth/UserAuthRoutes";
 import ClientRoutes from "../src/modules/Consumer/ClientRoutes"
 // Rotas de serviços
 import ServiceRoutes from "../src/modules/Service/ServiceRoutes"
+// importando as rotas de agendamentos
+import AppointmentRoutes from "../src/modules/Appointments/AppointmentRoutes"
+
 // Configuração do Swagger
 import { setupSwagger } from "./config/swagger";
 
@@ -22,6 +25,7 @@ app.use(UserRoutes); // Adiciona as rotas de usuário
 app.use(AuthRoutes); // Adiciona as rotas de autenticação
 app.use(ClientRoutes); // Adiciona as rotas de clientes
 app.use(ServiceRoutes); // Adiciona as rotas de serviços
+app.use(AppointmentRoutes); // Adiciona as rotas de agendamentos
 
 app.get('/', (req, res) => {
   res.status(200).send('OK');

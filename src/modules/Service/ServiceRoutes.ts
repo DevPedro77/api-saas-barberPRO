@@ -1,4 +1,5 @@
 import { Router } from "express";
+import authMiddleware from "../../middlewares/Auth";
 import ServiceController from "./useCases/CreateServices/ServiceController";
 // Rotas de listagem
 import ListControllerService from "./useCases/ListServices/ListController";
@@ -8,6 +9,7 @@ import UpdateController from "./useCases/UpdateServices/UpdateController";
 import DeleteController from "./useCases/DeleteService/DeleteController";
 
 const router = Router();
+const adminOnly = authMiddleware; // Middleware para proteger rotas (apenas admins podem criar/atualizar/deletar)
 
 /**
  * @swagger
@@ -44,14 +46,14 @@ const router = Router();
  *         description: Lista de serviços
  */
 // Rotas de criação de serviço
-router.post("/services", ServiceController.create);
+router.post("/services", authMiddleware, ServiceController.create);
 // Rotas de listagem de serviços
-router.get("/services", ListControllerService.create);
+router.get("/services", authMiddleware, ListControllerService.create);
 
 // Rotas de atualização de serviços
-router.put("/services/:id", UpdateController.create);
+router.put("/services/:id", authMiddleware, UpdateController.create);
 
 // Rotas de deleção de serviços
-router.delete("/services/:id", DeleteController.delete);
+router.delete("/services/:id", authMiddleware, DeleteController.delete);
 
 export default router;

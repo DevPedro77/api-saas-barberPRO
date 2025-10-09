@@ -2,6 +2,7 @@ import { Router } from 'express';
 import authMiddleware from '../../middlewares/Auth';
 import CreateAppointmentController from './useCases/CreateAppointments/ControllerAppointment';
 import DeleteAppointmentController from './useCases/DeleteAppointments.ts/DeleteControllerAppointments';
+import ListAppointmentsController from '../Appointments/useCases/ListAppointments/ListControllerAppoiments';
 
 const router = Router();
 
@@ -10,6 +11,7 @@ const adminOnly = authMiddleware;
 
 router.post('/appointments', authMiddleware, CreateAppointmentController.handle);
 router.delete('/appointments/:appointmentId', authMiddleware, DeleteAppointmentController.delete);
+router.get('/appointments', authMiddleware, ListAppointmentsController.list);
 
 /**
  * @swagger
@@ -33,6 +35,17 @@ router.delete('/appointments/:appointmentId', authMiddleware, DeleteAppointmentC
  *         description: Agendamento criado com sucesso
  *       400:
  *         description: Erro na requisição
+ * 
+ *   get:
+ *     summary: Lista todos os agendamentos
+ *     tags: [Agendamentos]
+ *     responses:
+ *       200:
+ *         description: Lista de agendamentos
+ *       400:
+ *         description: Erro na requisição
+ *       500:
+ *         description: Ocorreu um erro inesperado no servidor. Tente novamente mais tarde ou entre em contato com o suporte.
  *
  * /appointments/{appointmentId}:
  *   delete:

@@ -9,7 +9,7 @@ const router = Router();
 // Middleware para proteger rotas (apenas admins podem criar/atualizar/deletar)
 const adminOnly = authMiddleware;
 
-router.post('/appointments', authMiddleware, CreateAppointmentController.handle);
+router.post('/appointments', CreateAppointmentController.handle);
 router.delete('/appointments/:appointmentId', authMiddleware, DeleteAppointmentController.delete);
 router.get('/appointments', authMiddleware, ListAppointmentsController.list);
 

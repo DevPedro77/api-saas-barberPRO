@@ -12,6 +12,9 @@ import ServiceRoutes from "../src/modules/Service/ServiceRoutes"
 // importando as rotas de agendamentos
 import AppointmentRoutes from "../src/modules/Appointments/AppointmentRoutes"
 
+// importando as rotas de dashboard
+import DashboardRoutes from "../src/modules/Dashboard/DashboardRoutes"
+
 // Configuração do Swagger
 import { setupSwagger } from "./config/swagger";
 
@@ -26,6 +29,7 @@ app.use(AuthRoutes); // Adiciona as rotas de autenticação
 app.use(ClientRoutes); // Adiciona as rotas de clientes
 app.use(ServiceRoutes); // Adiciona as rotas de serviços
 app.use(AppointmentRoutes); // Adiciona as rotas de agendamentos
+app.use(DashboardRoutes); // Adiciona as rotas de dashboard
 
 app.get('/', (req, res) => {
   res.status(200).send('OK');

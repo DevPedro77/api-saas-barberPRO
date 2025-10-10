@@ -28,6 +28,18 @@ router.get('/appointments', authMiddleware, ListAppointmentsController.list);
  *             properties:
  *               serviceId:
  *                 type: string
+ *                 description: ID do serviço a ser agendado
+ *               dateTime:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Data e hora do agendamento
+ *               customerId:
+ *                 type: string
+ *                 description: ID do cliente que está agendando
+ *               status:
+ *                 type: string
+ *                 enum: [pending, confirmed, completed, cancelled]
+ *                 description: Status do agendamento
  *             required:
  *               - serviceId
  *     responses:

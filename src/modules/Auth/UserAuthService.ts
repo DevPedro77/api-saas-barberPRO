@@ -46,7 +46,7 @@ class AuthUserService {
       throw new Error("JWT_SECRET não configurado no ambiente");
     }
 
-    const token = jwt.sign(payload, jwtSecret, { expiresIn: "1h" });
+    const token = jwt.sign(payload, jwtSecret, { expiresIn: "1d" });
 
     // 5️⃣ Retorna token + dados do usuário
     return {

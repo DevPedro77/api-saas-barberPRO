@@ -1,73 +1,65 @@
 import prisma from "../../../../config/database";
 
-
-interface ServiceAppointmentsRequest {
+interface CreateAppointmentRequest {
   serviceId: string;
+  dateTime: Date;
+  customerId: string;
+  barberId?: string;
+  status?: "pending" | "confirmed" | "completed" | "cancelled";
 }
 
-interface ServiceAppointmentsResponse {
-  id: string;
-  date: Date;
-  status: string;
-  service: {
-    id: string;
-    name: string;
-    price: number;
-    durationMin: number;
-  };
-  customer: {
-    id: string;
-    name: string;
-    email: string;
-  };
-
-  
-}
-
-
-class ServiceAppointments {
-  static async handle({ serviceId }: ServiceAppointmentsRequest): Promise<ServiceAppointmentsResponse[]> {
-    // Verifica se o serviço existe
+class CreateAppointmentService {
+  static async handle({
+    serviceId,
+    dateTime,
+    customerId,
+    status = "pending",
+  }: CreateAppointmentRequest) {
+    // 1. Verificar se o serviço existe
     const serviceExist = await prisma.service.findUnique({
       where: { id: serviceId },
     });
-
     if (!serviceExist) {
       throw new Error("Serviço não encontrado");
     }
 
-    // Busca os agendamentos relacionados ao serviço
-    const appointments = await prisma.appointment.findMany({
-      where: { serviceId },
-      include: {
-        service: {
-          select: {
-            id: true,
-            name: true,
-            price: true,
-            durationMin: true,
-          },
-        },
-        customer: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
+    // 2. Verificar se o cliente existe
+    const customerExist = await prisma.customer.findUnique({
+      where: { id: customerId },
+    });
+    if (!customerExist) {
+      throw new Error("Cliente não encontrado");
+    }
+    
+    // 3. Verificar se já existe um agendamento para o mesmo serviço, cliente e data/hora
+    const appointmentExist = await prisma.appointment.findFirst({
+      where: {
+        serviceId,
+        customerId,
+        dateTime,
       },
     });
 
-    // Mapeia os resultados para o tipo de resposta esperado
-    return appointments.map((appointment: any) => ({
-      id: appointment.id,
-      date: appointment.date,
-      status: appointment.status,
-      service: appointment.service,
-      customer: appointment.customer,
-    }));
+    if (appointmentExist) {
+      throw new Error("Já existe um agendamento para este serviço, cliente e data/hora");
+    }
+
+    // 4. Criar o agendamento
+    const appointment = await prisma.appointment.create({
+      data: {
+        serviceId,
+        customerId,
+        dateTime,
+        status,
+      },
+      include: {
+        service: true,
+        customer: true,
+      },
+    });
+
+    return appointment;
   }
 }
 
-
-export default ServiceAppointments;
+export default CreateAppointmentService;

@@ -20,5 +20,12 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "moduleDetection": "force"
-  }
+  },
+  "include": [
+    "src"
+  ], // só inclui arquivos da pasta src
+  "exclude": [
+    "node_modules",
+    "prisma/seed.ts"
+  ] // ignora o seed
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"DeleteControllerAppointments.d.ts","sourceRoot":"","sources":["../../../../../src/modules/Appointments/useCases/DeleteAppointments.ts/DeleteControllerAppointments.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAI5C,cAAM,2BAA2B;WAClB,MAAM,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ;CAehD;AAGD,eAAe,2BAA2B,CAAC"}

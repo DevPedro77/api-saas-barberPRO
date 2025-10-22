@@ -2,19 +2,17 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 // Rotas de Usuário
-import UserRoutes from "../src/modules/Users/UserRoutes";
+import UserRoutes from "./modules/Users/UserRoutes";
 //Rotas de autenticação
-import AuthRoutes from "../src/modules/Auth/UserAuthRoutes";
+import AuthRoutes from "./modules/Auth/UserAuthRoutes";
 // Rotas de Clientes
-import ClientRoutes from "../src/modules/Consumer/ClientRoutes"
+import ClientRoutes from "./modules/Consumer/ClientRoutes"
 // Rotas de serviços
-import ServiceRoutes from "../src/modules/Service/ServiceRoutes"
+import ServiceRoutes from "./modules/Service/ServiceRoutes"
 // importando as rotas de agendamentos
-import AppointmentRoutes from "../src/modules/Appointments/AppointmentRoutes"
-
+import AppointmentRoutes from "./modules/Appointments/AppointmentRoutes"
 // importando as rotas de dashboard
-import DashboardRoutes from "../src/modules/Dashboard/DashboardRoutes"
-
+import DashboardRoutes from "./modules/Dashboard/DashboardRoutes"
 // Configuração do Swagger
 import { setupSwagger } from "./config/swagger";
 
